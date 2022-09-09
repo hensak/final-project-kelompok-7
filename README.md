@@ -13,7 +13,7 @@ Forum Tanya Jawab
 
 ## ERD
 
-![ERD Forum Tanya Jawab](/public/img/erd.png?raw=true)
+![ERD Forum Tanya Jawab](/public/img/erd_fix.png?raw=true)
 
 ## Link Video
 
