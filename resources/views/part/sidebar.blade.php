@@ -14,11 +14,7 @@
         </div>
         <div class="info">
           <a href="/" class="d-block">
-            @auth
-              {{ auth()->user()->username }}
-            @else
-              Guest
-            @endauth
+            {{ Auth::check() ? auth()->user()->username : 'Guest' }}
           </a>
         </div>
       </div>
@@ -41,7 +37,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="/" class="nav-link">
+            <a href="/index" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                 Home
@@ -49,7 +45,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/" class="nav-link">
+            <a href="/profile{{ Auth::check() ? '/'.auth()->user()->id : null }}" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                 Profile
@@ -57,7 +53,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/" class="nav-link">
+            <a href="/index" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                 Threads
