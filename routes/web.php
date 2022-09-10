@@ -14,6 +14,7 @@
 */
 
 Route::get('/', 'IndexController@index');
+Route::get('/index', 'IndexController@index');
 
 Route::group(['middleware' => ['auth']], function() {
     Route::post('/thread/create', 'ThreadController@create');

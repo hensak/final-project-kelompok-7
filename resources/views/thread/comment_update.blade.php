@@ -49,17 +49,13 @@ Thread #{{$thread->id}}
     <form action="/thread/{{$thread->id}}/comment/{{$comment_id}}/update" method="post">
         @csrf
         <div class="form-group">
-          @auth
-          <textarea name="thread_comment" class="form-control" rows="3">{{$item->comments}}</textarea>
-          @endauth
+          <textarea name="thread_comment" class="form-control" rows="3" @guest disabled @endguest>{{$item->comments}}</textarea>
         </div>
         @error('thread_comment')
         <div class="alert alert-danger">{{$message}}</div>
         @enderror
         <div>
-          @auth
-          <button type="Answer" class="btn btn-primary">Update now</button>
-          @endauth
+          <button type="Answer" class="btn btn-primary" @guest disabled @endguest>Update now</button>
         </div>
     </form>
     @else

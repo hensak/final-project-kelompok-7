@@ -48,7 +48,7 @@
         <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">{{Auth::user()->username}}</a>
         <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
           <li>
-            <a href="/profile" class="dropdown-item">
+            <a href="/profile/{{Auth::user()->id}}" class="dropdown-item">
               Profile
             </a>
           </li>

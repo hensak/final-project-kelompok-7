@@ -60,33 +60,6 @@
                 </p>
             </a>
           </li>
-          <li class="nav-item">
-            @auth
-              <form action="/logout" method="post">
-                @csrf
-                <button type="submit" class="btn btn-danger w-100"> Logout </button>
-              </form>
-            @else
-              <a href="/login" class="nav-link">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>
-                  Login
-                  </p>
-              </a>
-            @endauth
-          </li>
-          @auth
-            {{-- kosong --}}
-          @else
-            <li class="nav-item">
-              <a href="/register" class="nav-link">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>
-                  Register
-                  </p>
-              </a>
-            </li>
-          @endauth
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
