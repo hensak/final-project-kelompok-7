@@ -35,5 +35,31 @@
           </form>
         </div>
       </li>
+      @guest
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="/home" class="nav-link">Sign In</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="/register" class="nav-link">Register</a>
+      </li>
+      @endguest
+      @auth
+      <li class="nav-item dropdown">
+        <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">{{Auth::user()->username}}</a>
+        <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+          <li>
+            <a href="/profile" class="dropdown-item">
+              Profile
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              Sign Out
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              @csrf
+            </form>
+          </li>
+      @endauth
     </ul>
   </nav>
