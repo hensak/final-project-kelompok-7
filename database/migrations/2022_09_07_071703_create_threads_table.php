@@ -19,7 +19,7 @@ class CreateThreadsTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->string('title', 255);
             $table->text('content');
-            $table->date('date');
+            $table->datetime('date');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');

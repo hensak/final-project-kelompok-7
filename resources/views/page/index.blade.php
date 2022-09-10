@@ -1,160 +1,60 @@
 @extends('layouts.master')
 
 @section('title')
-Index Page
+Homepage
 @endsection
 
 @section('content')
-  <div class="container">
-    <div class="row">
-      <div class="card mx-3" style="width: 18rem;">
-        <div class="card-body">
-          <p class="card-title h3">Thread Title Buat Forum Tanya Jawab </p>
-          <p class="card-text"> Author : </p>
-          <p class="card-text">
-            <div class="container">
-              <div class="row d-flex justify-content-between w-100">
-                <div>
-                  <div class="">
-                    Dibuat
-                  </div>
-                  <div class="">
-                    9 Agustus
-                  </div>
-                </div>
-                <div>
-                  <div class="">
-                    Komentar
-                  </div>
-                  <div class="">
-                    2
-                  </div>
-                </div>
-                <div>
-                  <div class="">
-                    Like
-                  </div>
-                  <div class="">
-                    5
-                  </div>
-                </div>
-              </div>
-            </div>
-          </p>
-          <a href="#" class="card-link">Card link</a>
-        </div>
+  <div class="container-fluid">
+    <form action="/thread/create" method="post">
+      @csrf
+      <div class="form-group">
+        <label>Create Thread</label>
+        @auth
+        <textarea name="thread_title" class="form-control" placeholder="Put your title here..." rows="3"></textarea>
+        @endauth
+        @guest
+        <textarea name="thread_title" class="form-control" placeholder="Sign in before create new thread." rows="3"></textarea>
+        @endguest
       </div>
-      <div class="card mx-3" style="width: 18rem;">
-        <div class="card-body">
-          <p class="card-title h3">Thread Title Buat Forum Tanya Jawab </p>
-          <p class="card-text"> Author : </p>
-          <p class="card-text">
-            <div class="container">
-              <div class="row d-flex justify-content-between w-100">
-                <div>
-                  <div class="">
-                    Dibuat
-                  </div>
-                  <div class="">
-                    9 Agustus
-                  </div>
-                </div>
-                <div>
-                  <div class="">
-                    Komentar
-                  </div>
-                  <div class="">
-                    2
-                  </div>
-                </div>
-                <div>
-                  <div class="">
-                    Like
-                  </div>
-                  <div class="">
-                    5
-                  </div>
-                </div>
-              </div>
-            </div>
-          </p>
-          <a href="#" class="card-link">Card link</a>
-        </div>
+      @error('thread_title')
+      <div class="alert alert-danger">{{$message}}</div>
+      @enderror
+      <div>
+        {{-- <a href="/thread/create" class="btn btn-primary">Create thread</a> --}}
+        @auth
+        <button type="submit" class="btn btn-primary">Continue</button>
+        @endauth
+        @guest
+        <button type="submit" class="btn btn-primary" disabled>Continue</button>
+        @endguest
       </div>
-      <div class="card mx-3" style="width: 18rem;">
-        <div class="card-body">
-          <p class="card-title h3">Thread Title Buat Forum Tanya Jawab </p>
-          <p class="card-text"> Author : </p>
-          <p class="card-text">
-            <div class="container">
-              <div class="row d-flex justify-content-between w-100">
-                <div>
-                  <div class="">
-                    Dibuat
-                  </div>
-                  <div class="">
-                    9 Agustus
-                  </div>
-                </div>
-                <div>
-                  <div class="">
-                    Komentar
-                  </div>
-                  <div class="">
-                    2
-                  </div>
-                </div>
-                <div>
-                  <div class="">
-                    Like
-                  </div>
-                  <div class="">
-                    5
-                  </div>
-                </div>
-              </div>
-            </div>
-          </p>
-          <a href="#" class="card-link">Card link</a>
+    </form>
+  </div>
+<hr/>
+
+<div class="container-fluid">
+  <label>Thread List</label>
+  @forelse ($thread as $key => $item)
+    <div class="card">
+      <div class="card-header">{{$item->user->username}}</div>
+      <div class="card-body">
+        <h5 class="card-title">{{$item->title}}</h5>
+        <p class="card-text">{{$item->content}}</p>
+        {{-- <div class="container-fluid"> --}}
+          <div class="row d-flex justify-content-end w-100">
+            <div class="col-md-7">
+              <a href="#" class="btn btn-primary">Answer</a>
+            </div>            
+            <div class="col-md-4">Posted at: {{$item->date}}</div>
+            <div class="col-md-1">Like 5</div>
+          {{-- </div> --}}
         </div>
-      </div>
-      <div class="card mx-3" style="width: 18rem;">
-        <div class="card-body">
-          <p class="card-title h3">Thread Title Buat Forum Tanya Jawab </p>
-          <p class="card-text"> Author : </p>
-          <p class="card-text">
-            <div class="container">
-              <div class="row d-flex justify-content-between w-100">
-                <div>
-                  <div class="">
-                    Dibuat
-                  </div>
-                  <div class="">
-                    9 Agustus
-                  </div>
-                </div>
-                <div>
-                  <div class="">
-                    Komentar
-                  </div>
-                  <div class="">
-                    2
-                  </div>
-                </div>
-                <div>
-                  <div class="">
-                    Like
-                  </div>
-                  <div class="">
-                    5
-                  </div>
-                </div>
-              </div>
-            </div>
-          </p>
-          <a href="#" class="card-link">Card link</a>
-        </div>
+
       </div>
     </div>
-  </div>
+@empty
+  <p>No thread posted yet.</p>
+@endforelse
+</div>
 @endsection
