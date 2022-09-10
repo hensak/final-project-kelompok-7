@@ -13,7 +13,13 @@
           <img src="{{asset('admin3.2/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="/" class="d-block">Name</a>
+          <a href="/" class="d-block">
+            @auth
+              {{ auth()->user()->username }}
+            @else
+              Guest
+            @endauth
+          </a>
         </div>
       </div>
 
@@ -60,14 +66,12 @@
           </li>
           <li class="nav-item">
             @auth
-              <a href="/" class="nav-link">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>
-                  Logout
-                  </p>
-              </a>
+              <form action="/logout" method="post">
+                @csrf
+                <button type="submit" class="btn btn-danger w-100"> Logout </button>
+              </form>
             @else
-              <a href="/" class="nav-link">
+              <a href="/login" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                   Login
@@ -79,7 +83,7 @@
             {{-- kosong --}}
           @else
             <li class="nav-item">
-              <a href="/" class="nav-link">
+              <a href="/register" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                   Register
