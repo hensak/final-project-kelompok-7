@@ -4,10 +4,28 @@
 Thread #{{$thread->id}}
 @endsection
 
+@push('script')
+<script src="https://cdn.tiny.cloud/1/2dkin570dojykb30a84c81dgo194qwa93mpar7yicydi4ckh/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
+      toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
+      toolbar_mode: 'floating',
+      tinycomments_mode: 'embedded',
+      tinycomments_author: 'Author name',
+    });
+  </script>
+@endpush
+
 @section('content')
 <div class="container-fluid">
     <h4>{{$thread->title}}</h4>
-    <p>{{$thread->content}}</p>
+    <p>
+        @foreach (explode("\n",$thread->content) as $line)
+        {{$line}}<br>
+        @endforeach
+    </p>
 </div>
 <div class="row d-flex justify-content-end w-100">
     <div class="col-md-4">Posted by: {{$thread->user->username}} at {{$thread->date}}</div>
@@ -47,7 +65,12 @@ Thread #{{$thread->id}}
         @endif
         @endauth
     </div>
-    <p>{{$item->comments}}</p>
+    <p>
+        @foreach (explode("\n",$item->comments) as $line)
+        {{$line}}<br>
+        @endforeach
+    </p>
+    <hr/>
 @empty
     <p>No answer posted yet.</p>
 @endforelse
