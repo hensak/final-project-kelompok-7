@@ -12,7 +12,11 @@ My Thread
         <div class="card-header">{{$item->user->username}}</div>
         <div class="card-body">
           <h5 class="card-title h3">{{$item->title}}</h5>
-          <p class="card-text">{{$item->content}}</p>
+          <p class="card-text">
+            @foreach (explode("\n",$item->content) as $line)
+            {{$line}}<br>
+            @endforeach
+          </p>
             <div class="row d-flex justify-content-end w-100">
               <div class="col-md-3">Category: {{ $item->category->nama }}</div>
               <div class="col-md-3">Posted at: {{$item->date}}</div>
