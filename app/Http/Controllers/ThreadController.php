@@ -13,7 +13,8 @@ class ThreadController extends Controller
 {
     public function create(Request $request) {
         $thread_title = $request->thread_title;
-        return view('thread.create', compact('thread_title'));
+        $category = Category::all();
+        return view('thread.create', compact('thread_title', 'category'));
     }
 
     public function store(Request $request) {
@@ -23,12 +24,12 @@ class ThreadController extends Controller
             'category' => 'required',
         ]);
 
-        $category = Category::where('nama', $request->category)->first();
-        if($category == null) {
-            Category::create([
-                'nama' => $request->category,
-            ]);
-        }
+        // $category = Category::where('nama', $request->category)->first();
+        // if($category == null) {
+        //     Category::create([
+        //         'nama' => $request->category,
+        //     ]);
+        // }
         $category = Category::where('nama', $request->category)->first();
 
         $date = date("Y-m-d h:i:s");

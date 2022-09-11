@@ -37,7 +37,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="/index" class="nav-link">
+            <a href="/" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                 Home
@@ -53,12 +53,28 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="/category" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                Categories
+                </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="/index" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                 Threads
                 </p>
             </a>
+          </li>
+          <li class="nav-item">
+            @auth
+              <form action="/logout" method="post">
+                @csrf
+                <button type="submit" class="btn btn-danger w-100"> Logout </button>
+              </form>
+            @endauth
           </li>
         </ul>
       </nav>

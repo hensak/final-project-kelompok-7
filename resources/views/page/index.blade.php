@@ -32,13 +32,14 @@ Homepage
     <div class="card">
       <div class="card-header">{{$item->user->username}}</div>
       <div class="card-body">
-        <h5 class="card-title">{{$item->title}}</h5>
+        <h5 class="card-title h3">{{$item->title}}</h5>
         <p class="card-text">{{$item->content}}</p>
         {{-- <div class="container-fluid"> --}}
           <div class="row d-flex justify-content-end w-100">
-            <div class="col-md-7">
+            <div class="col-md-4">
               <a href="/thread/{{$item->id}}" class="btn btn-primary">Answer</a>
-            </div>            
+            </div>
+            <div class="col-md-3">Category: {{ $item->category->nama }}</div>
             <div class="col-md-4">Posted at: {{$item->date}}</div>
             <div class="col-md-1">
                 <a @auth href="/like/{{$item->id}}" @endauth>
