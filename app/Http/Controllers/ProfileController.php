@@ -16,12 +16,12 @@ class ProfileController extends Controller
     public function index(User $user) {
         $profile = $user->profile;
         // dd($profile);
-        return view('page.profile.index', compact('profile'));
+        return view('profile.index', compact('profile'));
     }
 
     public function edit(User $user) {
         $profile = $user->profile;
-        return view('page.profile.edit', compact('profile'));
+        return view('profile.edit', compact('profile'));
     }
 
     public function update(Request $request, User $user) {
