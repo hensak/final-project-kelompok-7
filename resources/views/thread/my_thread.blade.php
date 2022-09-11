@@ -26,8 +26,10 @@ My Thread
               </div>
               <div class="col-md-3">
                 <a href="/myThread/{{ $item->id }}/edit" class="btn btn-info"> Edit </a>
-                <form class="d-inline" action="index.html" method="post">
-                  <button type="button" class="btn btn-danger" onclick="event.preventDefault()"> Delete </button>
+                <form class="d-inline" action="/myThread/{{ $item->id }}" method="post">
+                  @csrf
+                  @method('delete')
+                  <button type="submit" class="btn btn-danger"> Delete </button>
                 </form>
               </div>
           </div>

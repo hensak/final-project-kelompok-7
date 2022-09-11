@@ -158,4 +158,12 @@ class ThreadController extends Controller
         $string = "/myThread/{$mythread->user->id}";
         return redirect($string);
     }
+
+    public function myThread_delete($thread_id) {
+        $mythread = Thread::find($thread_id);
+        $mythread->delete();
+
+        $string = "/myThread/{$mythread->user->id}";
+        return redirect($string);
+    }
 }
