@@ -16,6 +16,7 @@
 @stack('style')
 </head>
 <body class="hold-transition sidebar-mini">
+@include('sweetalert::alert')
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
