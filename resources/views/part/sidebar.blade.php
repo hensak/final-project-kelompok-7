@@ -37,7 +37,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="/index" class="nav-link">
+            <a href="/" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                 Home
@@ -49,6 +49,14 @@
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                 Profile
+                </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/category" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                Categories
                 </p>
             </a>
           </li>
@@ -66,27 +74,8 @@
                 @csrf
                 <button type="submit" class="btn btn-danger w-100"> Logout </button>
               </form>
-            @else
-              <a href="/login" class="nav-link">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>
-                  Login
-                  </p>
-              </a>
             @endauth
           </li>
-          @auth
-            {{-- kosong --}}
-          @else
-            <li class="nav-item">
-              <a href="/register" class="nav-link">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>
-                  Register
-                  </p>
-              </a>
-            </li>
-          @endauth
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

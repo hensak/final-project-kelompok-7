@@ -25,7 +25,14 @@ New Thread
 
     <div class="form-group">
       <label>Categories</label>
-      <input type="text" name="category" class="form-control">
+      {{-- <input type="" name="category" class="form-control"> --}}
+      <select class="form-control" name="category">
+        @forelse ($category as $key => $item)
+          <option value="{{ $item->nama }}">{{ $item->nama }}</option>
+        @empty
+          <option value=""> --- </option>
+        @endforelse
+      </select>
     </div>
     @error('category')
     <div class="alert alert-danger">{{$message}}</div>

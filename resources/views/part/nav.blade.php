@@ -37,7 +37,7 @@
       </li>
       @guest
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="/home" class="nav-link">Sign In</a>
+        <a href="/login" class="nav-link">Sign In</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="/register" class="nav-link">Register</a>
