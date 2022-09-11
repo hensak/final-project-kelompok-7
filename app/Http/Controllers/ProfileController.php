@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\User;
 use App\Profile;
 
@@ -39,6 +40,7 @@ class ProfileController extends Controller
         $profile->umur = $request->umur;
         $profile->alamat = $request->alamat;
         $profile->save();
+        Alert::success('Success', 'Your profile has been updated!');
         return view('profile.index', compact('profile'));
     }
 }
