@@ -61,10 +61,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/index" class="nav-link">
+            <a href="/myThread{{ Auth::check() ? '/'.auth()->user()->id : null }}" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
-                Threads
+                My Threads
                 </p>
             </a>
           </li>

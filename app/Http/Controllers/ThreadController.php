@@ -106,7 +106,7 @@ class ThreadController extends Controller
         $request->validate([
             'thread_comment' => 'required',
         ]);
- 
+
         $comment = Comment::where('id', $comment_id)->first();
         $comment->comments = $request->thread_comment;
         $comment->thread_id = $thread_id;
@@ -122,6 +122,40 @@ class ThreadController extends Controller
         $comment->delete();
 
         $string = "/thread/{$thread_id}";
+        return redirect($string);
+    }
+
+    public function myThread($user_id) {
+        $mythread = Thread::where('user_id', $user_id)->get();
+        // dd($mythread);
+        return view('thread.my_thread', compact('mythread'));
+    }
+
+    public function myThread_edit($thread_id) {
+        $mythread = Thread::find($thread_id);
+        $category = Category::all();
+        // dd($mythread);
+        return view('thread.my_thread_edit', compact('mythread', 'category'));
+    }
+
+    public function myThread_update(Request $request, $thread_id) {
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'category' => 'required',
+        ]);
+
+        $mythread = Thread::where('id', $thread_id)->first();
+        $category = Category::where('nama', $request->category)->first();
+        // dd($mythread->user->id);
+
+        $mythread->title = $request->title;
+        $mythread->content = $request->content;
+        // $mythread->date = $request->date;
+        $mythread->category_id = $category->id;
+        $mythread->save();
+
+        $string = "/myThread/{$mythread->user->id}";
         return redirect($string);
     }
 }

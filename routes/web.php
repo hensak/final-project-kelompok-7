@@ -20,6 +20,9 @@ Route::group(['middleware' => ['auth']], function() {
     // Threads...
     Route::post('/thread/create', 'ThreadController@create');
     Route::post('/thread', 'ThreadController@store');
+    Route::get('/myThread/{user_id}', 'ThreadController@myThread');
+    Route::get('/myThread/{thread_id}/edit', 'ThreadController@myThread_edit');
+    Route::put('/myThread/{thread_id}', 'ThreadController@myThread_update');
     // Profiles...
     Route::get('/profile/{user}', 'ProfileController@index');
     Route::get('/profile/{user}/edit', 'ProfileController@edit');
