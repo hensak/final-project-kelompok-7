@@ -10,7 +10,7 @@ Homepage
       @csrf
       <div class="form-group">
         <label>Create Thread</label>
-        <textarea name="thread_title" class="form-control" 
+        <textarea name="thread_title" class="form-control"
         @auth placeholder="Put your title here..." @endauth
         @guest placeholder="Sign in before create new thread." @endguest
         rows="3" @guest disabled @endguest></textarea>
@@ -27,9 +27,13 @@ Homepage
 <hr/>
 
 <div class="container-fluid">
-  <label>Thread List</label>
+  <div class="d-flex">
+    <label class="col-md-8">Thread List</label>
+    <label class="mr-2"> Filter Thread </label>
+    <input type="text" class="mb-2" name="daterange" value="09/01/2022 - 09/15/2022" />
+  </div>
   @forelse ($thread as $key => $item)
-    <div class="card">
+    <div class="card" data-created="{{ $item->date }}">
       <div class="card-header">{{$item->user->username}}</div>
       <div class="card-body">
         <h5 class="card-title h3">{{$item->title}}</h5>

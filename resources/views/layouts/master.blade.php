@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="{{asset('admin3.2/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('admin3.2/dist/css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="{{asset('admin3.2/plugins/daterangepicker/daterangepicker.css')}}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 @stack('style')
@@ -41,7 +42,7 @@
     <section class="content ml-2">
 
         @yield('content')
-
+        
     </section>
     <!-- /.content -->
   </div>
@@ -70,7 +71,9 @@
 <script src="{{asset('admin3.2/dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 {{-- <script src="{{asset('admin3.2/dist/js/demo.js')}}"></script> --}}
-
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script src="{{asset('admin3.2/plugins/daterangepicker/daterangepicker.js')}}"></script>
+<script src="{{ asset('js/date_filter.js') }}" charset="utf-8"></script>
 @stack('script')
 
 </body>
