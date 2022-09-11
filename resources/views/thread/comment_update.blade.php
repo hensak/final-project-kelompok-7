@@ -4,6 +4,21 @@
 Thread #{{$thread->id}}
 @endsection
 
+@push('script')
+<script src="https://cdn.tiny.cloud/1/2dkin570dojykb30a84c81dgo194qwa93mpar7yicydi4ckh/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
+      toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
+      toolbar_mode: 'floating',
+      tinycomments_mode: 'embedded',
+      tinycomments_author: 'Author name',
+      height: 250,
+    });
+  </script>
+@endpush
+
 @section('content')
 <div class="container-fluid">
     <h4>{{$thread->title}}</h4>
@@ -55,14 +70,35 @@ Thread #{{$thread->id}}
         <div class="alert alert-danger">{{$message}}</div>
         @enderror
         <div>
-          <button type="Answer" class="btn btn-primary" @guest disabled @endguest>Update now</button>
+          <button type="Answer" class="btn btn-primary" @guest disabled @endguest>Update</button>
+          <a href="/thread/{{$thread->id}}" class="btn btn-primary" @guest disabled @endguest>Cancel</a>
         </div>
     </form>
     @else
     <p>{{$item->comments}}</p>
     @endif
+    <hr/>
 @empty
 <p>No answer posted yet.</p>
 @endforelse
+</div>
+
+<h5>Your Answers</h5>
+<div class="container-fluid">
+    <form action="/thread/{{$thread->id}}/comment" method="post">
+        @csrf
+        <div class="form-group">
+          <textarea name="thread_comment" class="form-control" 
+          @auth placeholder="Make your answer..." @endauth 
+          @guest placeholder="Sign in before create new comment." @endguest 
+          rows="3" @guest disabled @endguest></textarea>
+        </div>
+        @error('thread_comment')
+        <div class="alert alert-danger">{{$message}}</div>
+        @enderror
+        <div>
+          <button type="Answer" class="btn btn-primary" @guest disabled @endguest>Post now</button>
+        </div>
+    </form>
 </div>
 @endsection

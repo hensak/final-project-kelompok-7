@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Thread;
 use App\Category;
 use App\Comment;
@@ -41,6 +42,7 @@ class ThreadController extends Controller
             'user_id' => Auth::user()->id,
         ]);
 
+        Alert::success('Success', 'Your thread has been posted!');
         return redirect('/');
     }
 
@@ -92,6 +94,7 @@ class ThreadController extends Controller
         ]);
 
         $string = "/thread/{$thread_id}";
+        Alert::success('Success', 'Your answer has been posted!');
         return redirect($string);
     }
 
@@ -114,6 +117,7 @@ class ThreadController extends Controller
         $comment->save();
 
         $string = "/thread/{$thread_id}";
+        Alert::success('Success', 'Your answer has been updated!');
         return redirect($string);
     }
 
@@ -122,6 +126,7 @@ class ThreadController extends Controller
         $comment->delete();
 
         $string = "/thread/{$thread_id}";
+        Alert::warning('Warning', 'Your answer has been deleted.');
         return redirect($string);
     }
 
