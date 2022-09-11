@@ -28,7 +28,11 @@ Edit Thread
       <label>Categories</label>
       {{-- <input type="" name="category" class="form-control"> --}}
       <select class="form-control" name="category">
+        <option selected>{{$mythread->category->nama}}</option>
         @forelse ($category as $key => $item)
+          @if ($item->nama == $mythread->category->nama)
+            @continue
+          @endif
           <option value="{{ $item->nama }}">{{ $item->nama }}</option>
         @empty
           <option value=""> --- </option>

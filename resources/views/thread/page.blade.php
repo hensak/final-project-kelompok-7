@@ -65,11 +65,9 @@ Thread #{{$thread->id}}
         @endif
         @endauth
     </div>
-    <p>
-        @foreach (explode("\n",$item->comments) as $line)
-        {{$line}}<br>
-        @endforeach
-    </p>
+    @foreach (explode("\n", str_replace(array("<p>","</p>","&nbsp;"),"", $item->comments)) as $line)
+    {{$line}}<br>
+    @endforeach
     <hr/>
 @empty
     <p>No answer posted yet.</p>

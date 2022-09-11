@@ -161,6 +161,7 @@ class ThreadController extends Controller
         $mythread->save();
 
         $string = "/myThread/{$mythread->user->id}";
+        Alert::success('Success', 'Your thread has been updated!');
         return redirect($string);
     }
 
@@ -169,6 +170,7 @@ class ThreadController extends Controller
         $mythread->delete();
 
         $string = "/myThread/{$mythread->user->id}";
+        Alert::warning('Warning', 'Your thread has been deleted.');
         return redirect($string);
     }
 }

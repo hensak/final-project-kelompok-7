@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Category;
 
 class CategoryController extends Controller
@@ -36,12 +37,14 @@ class CategoryController extends Controller
 
         $categoryEdit->nama = $request->category_name;
         $categoryEdit->update();
+        Alert::success('Success', 'Category has been updated!');
         return redirect('/category');
     }
 
     public function destroy(Category $category) {
         // $cast = Cast::find($id);
         $category->delete();
+        Alert::warning('Warning', 'Category has been deleted.');
         return redirect('/category');
     }
 }
