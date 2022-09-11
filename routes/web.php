@@ -14,6 +14,7 @@
 */
 
 Route::get('/', 'IndexController@index');
+Route::get('/index', 'IndexController@index');
 
 Route::group(['middleware' => ['auth']], function() {
     // Threads...
@@ -29,7 +30,17 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/category/{categoryEdit}/edit', 'CategoryController@edit');
     Route::put('/category/{categoryEdit}', 'CategoryController@update');
     Route::delete('/category/{category}', 'CategoryController@destroy');
+    //Likes...
+    Route::get('/like/{thread_id}', 'ThreadController@like');
+    Route::get('/like2/{thread_id}', 'ThreadController@like2');
+    //Comments...
+    Route::post('/thread/{thread_id}/comment', 'ThreadController@comment');
+    Route::get('/thread/{thread_id}/comment/{comment_id}/edit', 'ThreadController@comment_edit');
+    Route::post('/thread/{thread_id}/comment/{comment_id}/update', 'ThreadController@comment_update');
+    Route::get('/thread/{thread_id}/comment/{comment_id}/delete', 'ThreadController@comment_delete');
 });
+Route::get('/thread/{thread_id}', 'ThreadController@page');
+
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
